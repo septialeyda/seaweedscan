@@ -6,10 +6,8 @@ import gdown
 import streamlit as st
 from ultralytics import YOLO
 
-# ✅ Page config must be first Streamlit command
 st.set_page_config(page_title="SeaweedScan 🌿", layout="wide")
 
-# Google Drive model setup
 MODEL_URL = "https://drive.google.com/uc?id=1XAUiORzmfbHyrogIi3viw_jt90ASboSE"
 MODEL_PATH = "seaweed_yolo8.pt"
 
@@ -22,7 +20,6 @@ def load_model():
 
 model = load_model()
 
-# Inference logic
 def model_prediction(uploaded_file):
     uploaded_file.seek(0)
     with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
@@ -48,45 +45,46 @@ def model_prediction(uploaded_file):
 
     return None, None, None
 
-# Sidebar navigation
 st.sidebar.title("🧭 Navigation")
 app_mode = st.sidebar.radio("Go to", ["🏠 Home", "🔍 Seaweed Recognition"])
 
-# Home page
 if app_mode == "🏠 Home":
-    st.markdown("## 🌊 SeaweedScan", unsafe_allow_html=True)
+    st.markdown("## 🌊 SeaweedScan")
 
     try:
         st.image("home.jpg", use_container_width=True)
     except:
         st.warning("📷 'home.jpg' not found. Add it to your repo to display a banner image.")
 
+    st.markdown("### 🥬 Welcome to SeaweedScan")
+    st.markdown(
+        "Discover the fascinating world of seaweed with our AI-powered image recognition system. "
+        "Our mission is to make marine biodiversity accessible and interactive."
+    )
+
+    st.markdown("---")
+    st.markdown("### 🔧 How It Works")
     st.markdown("""
-### 🥬 Welcome to SeaweedScan
+- 📸 Snap a photo of the seaweed specimen  
+- 📤 Upload it to SeaweedScan  
+- 🤖 Let our AI recognize it  
+- 🌍 Contribute to marine research  
+    """)
 
-Discover the fascinating world of seaweed with our AI-powered image recognition system.
+    st.markdown("---")
+    st.markdown("### 💡 Why Use SeaweedScan?")
+    st.markdown("""
+- ✅ Accurate recognition  
+- 🧪 Supports citizen science  
+- 🌐 Community-driven  
+- 😌 Easy to use  
+    """)
 
----
+    st.info("👉 Switch to the **Seaweed Recognition** tab to begin!")
+    st.caption("App version: v1.0.0 | Developed by Blue Dragon Indonesia Team")
 
-### 🔧 How It Works
-- 📸 Snap a photo of the seaweed specimen
-- 📤 Upload it to SeaweedScan
-- 🤖 Let our AI recognize it
-- 🌍 Contribute to marine research
-
----
-
-### 💡 Why Use SeaweedScan?
-- ✅ Accurate recognition
-- 🧪 Supports citizen science
-- 🌐 Community-driven
-- 😌 Easy to use
-""")
-    st.info("👉 Switch to the **Seaweed Recognition** tab to get started!")
-
-# Recognition page
 elif app_mode == "🔍 Seaweed Recognition":
-    st.markdown("<h1>🔍 Seaweed Recognition</h1>", unsafe_allow_html=True)
+    st.markdown("## 🔍 Seaweed Recognition")
     st.markdown("### 📤 Upload your seaweed image")
     uploaded_file = st.file_uploader("Supported formats: JPG, JPEG, PNG", type=["jpg", "jpeg", "png"])
 
@@ -100,3 +98,6 @@ elif app_mode == "🔍 Seaweed Recognition":
                     st.success(f"✅ It's a **{label}** with confidence **{confidence:.2f}**")
                 else:
                     st.warning("⚠️ No seaweed detected or image not suitable.")
+
+    st.markdown("---")
+    st.caption("App version: v1.0.0 | Developed by Blue Dragon Indonesia Team")
