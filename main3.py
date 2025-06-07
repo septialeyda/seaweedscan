@@ -1,10 +1,13 @@
 import os
 import tempfile
-import streamlit as st
-from ultralytics import YOLO
 import numpy as np
 from PIL import Image
 import gdown
+import streamlit as st
+
+st.set_page_config(page_title="SeaweedScan 🌿", layout="wide")
+
+from ultralytics import YOLO
 
 MODEL_URL = "https://drive.google.com/uc?id=1XAUiORzmfbHyrogIi3viw_jt90ASboSE"
 MODEL_PATH = "seaweed_yolo8.pt"
@@ -18,9 +21,6 @@ def load_model():
     return YOLO(MODEL_PATH)
 
 model = load_model()
-
-# Page setup
-st.set_page_config(page_title="SeaweedScan 🌿", layout="wide")
 
 # YOLOv8 model inference
 def model_prediction(uploaded_file):
