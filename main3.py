@@ -4,15 +4,15 @@ import numpy as np
 from PIL import Image
 import gdown
 import streamlit as st
-
-st.set_page_config(page_title="SeaweedScan 🌿", layout="wide")
-
 from ultralytics import YOLO
 
+# ✅ Page config must be first Streamlit command
+st.set_page_config(page_title="SeaweedScan 🌿", layout="wide")
+
+# Google Drive model setup
 MODEL_URL = "https://drive.google.com/uc?id=1XAUiORzmfbHyrogIi3viw_jt90ASboSE"
 MODEL_PATH = "seaweed_yolo8.pt"
 
-# Load model only once
 @st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_PATH):
@@ -22,7 +22,7 @@ def load_model():
 
 model = load_model()
 
-# YOLOv8 model inference
+# Inference logic
 def model_prediction(uploaded_file):
     uploaded_file.seek(0)
     with tempfile.NamedTemporaryFile(delete=False, suffix=".jpg") as temp_file:
@@ -48,19 +48,19 @@ def model_prediction(uploaded_file):
 
     return None, None, None
 
-# Sidebar Navigation
+# Sidebar navigation
 st.sidebar.title("🧭 Navigation")
 app_mode = st.sidebar.radio("Go to", ["🏠 Home", "🔍 Seaweed Recognition"])
 
-# Home Page
+# Home page
 if app_mode == "🏠 Home":
     st.markdown("<h1 style='text-align: center;'>🌊 SeaweedScan</h1>", unsafe_allow_html=True)
-    
+
     try:
         st.image("home.jpg", use_container_width=True)
     except:
-        st.warning("📷 `home.jpg` not found. Add it to your repo to display a banner image.")
-    
+        st.warning("📷 'home.jpg' not found. Add it to your repo to display a banner image.")
+
     st.markdown("""
         <div style='padding: 1.5em; border-radius: 10px; background-color: rgba(255,255,255,0.05);'>
             <h3 style="color:#70e000;">Welcome to SeaweedScan 🌿</h3>
@@ -82,13 +82,14 @@ if app_mode == "🏠 Home":
                 <li>🌐 Community-driven project</li>
                 <li>😌 Easy to use interface</li>
             </ul>
-            
+
             <p>👉 Use the <strong>Seaweed Recognition</strong> tab to begin!</p>
         </div>
     """, unsafe_allow_html=True)
 
-# Recognition Page
+# Recognition page
 elif app_mode == "🔍 Seaweed Recognition":
+    st.markdown("<h1>🔍 Seaweed Recognition</h1>", unsafe_allow_html=True)
     st.markdown("### 📤 Upload your seaweed image")
     uploaded_file = st.file_uploader("Supported formats: JPG, JPEG, PNG", type=["jpg", "jpeg", "png"])
 
