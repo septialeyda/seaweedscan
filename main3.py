@@ -6,14 +6,14 @@ import numpy as np
 from PIL import Image
 import gdown
 
-# Load YOLO model once
-MODEL_URL = "https://drive.google.com/file/d/1XAUiORzmfbHyrogIi3viw_jt90ASboSE/view?usp=sharing"
+MODEL_URL = "https://drive.google.com/uc?id=1XAUiORzmfbHyrogIi3viw_jt90ASboSE"
 MODEL_PATH = "seaweed_yolo8.pt"
 
+# Load model only once
 @st.cache_resource
 def load_model():
     if not os.path.exists(MODEL_PATH):
-        with st.spinner("⬇️ Downloading model weights..."):
+        with st.spinner("⬇️ Downloading YOLOv8 model..."):
             gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
     return YOLO(MODEL_PATH)
 
