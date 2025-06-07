@@ -3,6 +3,14 @@ import tempfile
 import streamlit as st
 from ultralytics import YOLO
 import numpy as np
+from PIL import Image
+
+# Load YOLO model once
+@st.cache_resource
+def load_model():
+    return YOLO("seaweed_yolo8.pt")
+
+model = load_model()
 
 # Page setup
 st.set_page_config(page_title="SeaweedScan 🌿", layout="wide")
@@ -14,19 +22,24 @@ def model_prediction(uploaded_file):
         temp_file.write(uploaded_file.read())
         temp_path = temp_file.name
 
-    model = YOLO('seaweed_yolo8.pt')
     results = model.predict(source=temp_path, conf=0.25)
     os.remove(temp_path)
 
-    if results and hasattr(results[0], "probs") and results[0].probs is not None:
-        result_index = int(np.argmax(results[0].probs.data))
-        class_name = ["Acanthophora", "Caulerpa", "Eucheuma", "Gracilaria", "Halimeda", "Padina", "Sargassum", "Turbinaria", "Ulva"]
-        predicted_label = class_name[result_index]
-        confidence = float(results[0].probs.data[result_index])
+    if results:
+        if hasattr(results[0], "probs") and results[0].probs is not None:
+            result_index = int(np.argmax(results[0].probs.data))
+            class_name = ["Acanthophora", "Caulerpa", "Eucheuma", "Gracilaria", "Halimeda",
+                          "Padina", "Sargassum", "Turbinaria", "Ulva"]
+            predicted_label = class_name[result_index]
+            confidence = float(results[0].probs.data[result_index])
+        else:
+            predicted_label = "Unknown"
+            confidence = 0.0
+
         annotated_image = results[0].plot()
         return annotated_image, predicted_label, confidence
-    else:
-        return None, None, None
+
+    return None, None, None
 
 # Sidebar Navigation
 st.sidebar.title("🧭 Navigation")
@@ -35,7 +48,7 @@ app_mode = st.sidebar.radio("Go to", ["🏠 Home", "🔍 Seaweed Recognition"])
 # Home Page
 if app_mode == "🏠 Home":
     st.markdown("<h1 style='text-align: center;'>🌊 SeaweedScan</h1>", unsafe_allow_html=True)
-    st.image("D:/Blue-Dragon/Deploy/home.jpg", use_container_width=True)
+    st.image("home.jpg", use_container_width=True)  # Make sure this file is in the repo
     st.markdown("""
         <div style='padding:20px; background-color:#e8f5e9; border-radius:10px'>
         <h3>Welcome to SeaweedScan, your reliable seaweed image recognition system! 🥬</h3>
@@ -53,7 +66,6 @@ if app_mode == "🏠 Home":
         - 🌐 Community-driven project
         - 😌 Easy to use interface
 
-        <br>
         👉 Go to the <strong>Seaweed Recognition</strong> page to begin!
         </div>
     """, unsafe_allow_html=True)
