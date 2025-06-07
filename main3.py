@@ -4,11 +4,18 @@ import streamlit as st
 from ultralytics import YOLO
 import numpy as np
 from PIL import Image
+import gdown
 
 # Load YOLO model once
+MODEL_URL = "https://drive.google.com/file/d/1XAUiORzmfbHyrogIi3viw_jt90ASboSE/view?usp=sharing"
+MODEL_PATH = "seaweed_yolo8.pt"
+
 @st.cache_resource
 def load_model():
-    return YOLO("seaweed_yolo8.pt")
+    if not os.path.exists(MODEL_PATH):
+        with st.spinner("⬇️ Downloading model weights..."):
+            gdown.download(MODEL_URL, MODEL_PATH, quiet=False)
+    return YOLO(MODEL_PATH)
 
 model = load_model()
 
