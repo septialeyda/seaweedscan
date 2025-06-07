@@ -54,7 +54,7 @@ app_mode = st.sidebar.radio("Go to", ["🏠 Home", "🔍 Seaweed Recognition"])
 
 # Home page
 if app_mode == "🏠 Home":
-    st.markdown("<h1 style='text-align: center;'>🌊 SeaweedScan</h1>", unsafe_allow_html=True)
+    st.markdown("## 🌊 SeaweedScan", unsafe_allow_html=True)
 
     try:
         st.image("home.jpg", use_container_width=True)
@@ -62,51 +62,27 @@ if app_mode == "🏠 Home":
         st.warning("📷 'home.jpg' not found. Add it to your repo to display a banner image.")
 
     st.markdown("""
-        <style>
-        .fancy-box {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(200, 200, 200, 0.15);
-            padding: 1.5em;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            color: inherit;
-        }
-        .fancy-box h3 {
-            color: #70e000;
-            margin-top: 0;
-            text-shadow: 0 0 1px rgba(112,224,0,0.3);
-        }
-        .fancy-box ul {
-            margin: 0;
-            padding-left: 1.2em;
-        }
-        </style>
+### 🥬 Welcome to SeaweedScan
 
-        <div class="fancy-box">
-            <h3>🥬 Welcome to SeaweedScan</h3>
-            <p>Discover the fascinating world of seaweed with our AI-powered image recognition system.</p>
+Discover the fascinating world of seaweed with our AI-powered image recognition system.
 
-            <hr>
+---
 
-            <h4>🔧 How It Works</h4>
-            <ul>
-                <li>📸 Snap a photo of the seaweed specimen</li>
-                <li>📤 Upload it to SeaweedScan</li>
-                <li>🤖 Let our AI recognize it</li>
-                <li>🌍 Contribute to marine research</li>
-            </ul>
+### 🔧 How It Works
+- 📸 Snap a photo of the seaweed specimen
+- 📤 Upload it to SeaweedScan
+- 🤖 Let our AI recognize it
+- 🌍 Contribute to marine research
 
-            <h4>💡 Why Use SeaweedScan?</h4>
-            <ul>
-                <li>✅ Accurate recognition</li>
-                <li>🧪 Supports citizen science</li>
-                <li>🌐 Community-driven</li>
-                <li>😌 Easy to use</li>
-            </ul>
+---
 
-            <p><strong>👉 Switch to the <em>Seaweed Recognition</em> tab to get started!</strong></p>
-        </div>
-    """, unsafe_allow_html=True)
+### 💡 Why Use SeaweedScan?
+- ✅ Accurate recognition
+- 🧪 Supports citizen science
+- 🌐 Community-driven
+- 😌 Easy to use
+""")
+    st.info("👉 Switch to the **Seaweed Recognition** tab to get started!")
 
 # Recognition page
 elif app_mode == "🔍 Seaweed Recognition":
