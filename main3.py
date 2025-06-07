@@ -62,15 +62,36 @@ if app_mode == "🏠 Home":
         st.warning("📷 'home.jpg' not found. Add it to your repo to display a banner image.")
 
     st.markdown("""
-        <div style='padding: 1.5em; border-radius: 10px; background-color: rgba(255,255,255,0.05);'>
-            <h3 style="color:#70e000;">Welcome to SeaweedScan 🌿</h3>
-            <p style="font-size: 1.1em;">Discover the fascinating world of seaweed with our AI-powered image recognition system.</p>
+        <style>
+        .fancy-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(200, 200, 200, 0.15);
+            padding: 1.5em;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            color: inherit;
+        }
+        .fancy-box h3 {
+            color: #70e000;
+            margin-top: 0;
+            text-shadow: 0 0 1px rgba(112,224,0,0.3);
+        }
+        .fancy-box ul {
+            margin: 0;
+            padding-left: 1.2em;
+        }
+        </style>
 
-            <hr style="border-color: #444;">
+        <div class="fancy-box">
+            <h3>🥬 Welcome to SeaweedScan</h3>
+            <p>Discover the fascinating world of seaweed with our AI-powered image recognition system.</p>
+
+            <hr>
+
             <h4>🔧 How It Works</h4>
             <ul>
                 <li>📸 Snap a photo of the seaweed specimen</li>
-                <li>📤 Upload to SeaweedScan</li>
+                <li>📤 Upload it to SeaweedScan</li>
                 <li>🤖 Let our AI recognize it</li>
                 <li>🌍 Contribute to marine research</li>
             </ul>
@@ -78,12 +99,12 @@ if app_mode == "🏠 Home":
             <h4>💡 Why Use SeaweedScan?</h4>
             <ul>
                 <li>✅ Accurate recognition</li>
-                <li>🧪 Citizen science support</li>
-                <li>🌐 Community-driven project</li>
-                <li>😌 Easy to use interface</li>
+                <li>🧪 Supports citizen science</li>
+                <li>🌐 Community-driven</li>
+                <li>😌 Easy to use</li>
             </ul>
 
-            <p>👉 Use the <strong>Seaweed Recognition</strong> tab to begin!</p>
+            <p><strong>👉 Switch to the <em>Seaweed Recognition</em> tab to get started!</strong></p>
         </div>
     """, unsafe_allow_html=True)
 
