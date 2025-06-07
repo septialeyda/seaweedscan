@@ -55,32 +55,42 @@ app_mode = st.sidebar.radio("Go to", ["🏠 Home", "🔍 Seaweed Recognition"])
 # Home Page
 if app_mode == "🏠 Home":
     st.markdown("<h1 style='text-align: center;'>🌊 SeaweedScan</h1>", unsafe_allow_html=True)
-    st.image("home.jpg", use_container_width=True)  # Make sure this file is in the repo
+    
+    try:
+        st.image("home.jpg", use_container_width=True)
+    except:
+        st.warning("📷 `home.jpg` not found. Add it to your repo to display a banner image.")
+    
     st.markdown("""
-        <div style='padding:20px; background-color:#e8f5e9; border-radius:10px'>
-        <h3>Welcome to SeaweedScan, your reliable seaweed image recognition system! 🥬</h3>
-        <p>Discover the fascinating world of seaweed with our AI-powered image recognition system.</p>
+        <div style='padding: 1.5em; border-radius: 10px; background-color: rgba(255,255,255,0.05);'>
+            <h3 style="color:#70e000;">Welcome to SeaweedScan 🌿</h3>
+            <p style="font-size: 1.1em;">Discover the fascinating world of seaweed with our AI-powered image recognition system.</p>
 
-        ### 🔧 How It Works
-        - 📸 Snap a photo of the seaweed specimen.
-        - 📤 Upload to SeaweedScan.
-        - 🤖 Let our AI recognize it.
-        - 🌍 Contribute to marine research!
+            <hr style="border-color: #444;">
+            <h4>🔧 How It Works</h4>
+            <ul>
+                <li>📸 Snap a photo of the seaweed specimen</li>
+                <li>📤 Upload to SeaweedScan</li>
+                <li>🤖 Let our AI recognize it</li>
+                <li>🌍 Contribute to marine research</li>
+            </ul>
 
-        ### 💡 Why Use SeaweedScan?
-        - ✅ Accurate recognition
-        - 🧪 Citizen science support
-        - 🌐 Community-driven project
-        - 😌 Easy to use interface
-
-        👉 Go to the <strong>Seaweed Recognition</strong> page to begin!
+            <h4>💡 Why Use SeaweedScan?</h4>
+            <ul>
+                <li>✅ Accurate recognition</li>
+                <li>🧪 Citizen science support</li>
+                <li>🌐 Community-driven project</li>
+                <li>😌 Easy to use interface</li>
+            </ul>
+            
+            <p>👉 Use the <strong>Seaweed Recognition</strong> tab to begin!</p>
         </div>
     """, unsafe_allow_html=True)
 
 # Recognition Page
 elif app_mode == "🔍 Seaweed Recognition":
-    st.markdown("<h1>🔍 Seaweed Recognition</h1>", unsafe_allow_html=True)
-    uploaded_file = st.file_uploader("📁 Upload your seaweed image", type=["jpg", "jpeg", "png"])
+    st.markdown("### 📤 Upload your seaweed image")
+    uploaded_file = st.file_uploader("Supported formats: JPG, JPEG, PNG", type=["jpg", "jpeg", "png"])
 
     if uploaded_file is not None:
         st.image(uploaded_file, caption='📷 Uploaded Image', use_container_width=True)
