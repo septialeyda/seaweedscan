@@ -81,7 +81,7 @@ if app_mode == "🏠 Home":
     """)
 
     st.info("👉 Switch to the **Seaweed Recognition** tab to begin!")
-    st.caption("App version: v1.0.0 | Developed by Blue Dragon Indonesia Team")
+    st.caption("App version: v1.0.0 | Developed by BD Indonesia Team")
 
 elif app_mode == "🔍 Seaweed Recognition":
     st.markdown("## 🔍 Seaweed Recognition")
@@ -100,4 +100,4 @@ elif app_mode == "🔍 Seaweed Recognition":
                     st.warning("⚠️ No seaweed detected or image not suitable.")
 
     st.markdown("---")
-    st.caption("App version: v1.0.0 | Developed by Blue Dragon Indonesia Team")
+    st.caption("App version: v1.0.0 | Developed by BD Indonesia Team")
