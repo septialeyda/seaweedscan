@@ -8,8 +8,8 @@ from ultralytics import YOLO
 
 st.set_page_config(page_title="SeaweedScan 🌿", layout="wide")
 
-MODEL_URL = "https://drive.google.com/uc?id=1XAUiORzmfbHyrogIi3viw_jt90ASboSE"
-MODEL_PATH = "seaweed_yolo8.pt"
+MODEL_URL = "hhttps://drive.google.com/file/d/1OQtARxZnQDS5UzS8vukSQBiQktIDt0Ka"
+MODEL_PATH = "seaweed-9.pt"
 
 @st.cache_resource
 def load_model():
