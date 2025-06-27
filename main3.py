@@ -32,7 +32,7 @@ def model_prediction(uploaded_file):
     if results:
         if hasattr(results[0], "probs") and results[0].probs is not None:
             result_index = int(np.argmax(results[0].probs.data))
-            class_name = ["Acanthophora", "Caulerpa", "Eucheuma", "Gracilaria", "Halimeda",
+            class_name = ["Acanthophora", "Caulerpa", "Dictyota", "Eucheuma", "Galaxaura", "Gracilaria", "Halimeda", "Kappaphycus", "Others",
                           "Padina", "Sargassum", "Turbinaria", "Ulva"]
             predicted_label = class_name[result_index]
             confidence = float(results[0].probs.data[result_index])
